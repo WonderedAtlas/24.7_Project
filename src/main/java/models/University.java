@@ -1,3 +1,7 @@
+package models;
+
+import enums.StudyProfile;
+
 public class University {
 
     String id;
@@ -64,13 +68,11 @@ public class University {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("University{");
-        sb.append("id='").append(id).append('\'');
-        sb.append(", fullName='").append(fullName).append('\'');
-        sb.append(", shortName='").append(shortName).append('\'');
-        sb.append(", yearOfFoundation=").append(yearOfFoundation);
-        sb.append(", mainProfile=").append(mainProfile);
-        sb.append('}');
-        return sb.toString();
+        return String.format("id = %s, fullName = %s, shortName = %s, yearOfFoundation = %s, mainProfile = %s",
+                this.id,
+                this.fullName,
+                this.shortName,
+                this.yearOfFoundation,
+                this.mainProfile.getProfileName());
     }
 }

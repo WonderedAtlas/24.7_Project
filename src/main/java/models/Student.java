@@ -1,3 +1,5 @@
+package models;
+
 public class Student {
 
     String fullName;
@@ -53,12 +55,10 @@ public class Student {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Student{");
-        sb.append("fullName='").append(fullName).append('\'');
-        sb.append(", universityId='").append(universityId).append('\'');
-        sb.append(", currentCourseNumber=").append(currentCourseNumber);
-        sb.append(", avgExamScore=").append(avgExamScore);
-        sb.append('}');
-        return sb.toString();
+        return String.format("fullName = %s, universityId = %s, currentCourseNumber = %s, avgExamScore = %s",
+                this.fullName,
+                this.universityId,
+                this.currentCourseNumber,
+                this.avgExamScore);
     }
 }
