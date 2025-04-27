@@ -7,6 +7,8 @@ import enums.EUniversityMethodComparator;
 
 public class UnitedComparator {
 
+    private UnitedComparator() {};
+
     public static IStudentComparator getStudentComparator(EStudentMethodComporator currentStudentMethod) {
         switch (currentStudentMethod) {
             case StudentAvgExamScoreComparator:
