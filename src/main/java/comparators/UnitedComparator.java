@@ -5,9 +5,11 @@ import comparators.universityComporators.*;
 import enums.EStudentMethodComporator;
 import enums.EUniversityMethodComparator;
 
+
 public class UnitedComparator {
 
-    private UnitedComparator() {};
+    private UnitedComparator() {}
+
 
     public static IStudentComparator getStudentComparator(EStudentMethodComporator currentStudentMethod) {
         switch (currentStudentMethod) {
@@ -21,7 +23,6 @@ public class UnitedComparator {
                 return new StudentUniversityIdComparator();
             default:
                 throw new IllegalStateException("Unexpected method " + currentStudentMethod);
-
         }
     }
 
@@ -39,7 +40,6 @@ public class UnitedComparator {
                 return new UniversityYearOfFoundationComparator();
             default:
                 throw new IllegalStateException("Unexpected method " + currentStudentMethod);
-
         }
     }
 }

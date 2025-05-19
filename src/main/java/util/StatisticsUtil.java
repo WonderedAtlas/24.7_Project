@@ -1,3 +1,5 @@
+package util;
+
 import enums.StudyProfile;
 import models.Statistics;
 import models.Student;
@@ -9,11 +11,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class StatisticsUtil {
 
+    private static final Logger logger = Logger.getLogger(StatisticsUtil.class.getName());
+
+
+
+
+
     public static List<Statistics> createStatistics(List<Student> students, List<University> universities) {
+        logger.info("Формирование статистики");
         List<Statistics> statisticsList = new ArrayList<>();
         Set<StudyProfile> profiles = universities.stream()
                 .map(University::getMainProfile)
@@ -50,6 +60,9 @@ public class StatisticsUtil {
             avgExamScore.ifPresent(value -> statistics.setAvgExamScore(
                     (float) BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP).doubleValue()));
         });
+
+        logger.info(String.format("Статистика сформирована с %s объектами", statisticsList.size()));
+
 
         return statisticsList;
     }

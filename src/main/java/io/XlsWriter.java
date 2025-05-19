@@ -1,15 +1,21 @@
+package io;
+
 import models.Statistics;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
 
 public class XlsWriter {
+
+    static Logger logger = Logger.getLogger(XlsWriter.class.getName());
 
     public static void createFile(List<Statistics> statistics, String filePath) {
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -65,18 +71,17 @@ public class XlsWriter {
             }
         }
 
+        try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
 
-        try (FileOutputStream fileOut = new FileOutputStream(filePath)) { // !Update
             workbook.write(fileOut);
-            System.out.println("Файл создан: " + filePath);
+            logger.info("Файл создан: " + filePath);
+
+        } catch (FileNotFoundException e) {
+            logger.severe("Не удаётся создать файл " + filePath + " " + e);
         } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                workbook.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            logger.severe("Ошибка работы с файлом " + filePath + " " + e);
         }
+        logger.info("Запись в excel-файл успешно завершена");
+
     }
 }
